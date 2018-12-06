@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import bank.model.IllegalBankTransactionException;
@@ -16,6 +17,7 @@ public class ClientViewController {
 	static final String DEFAULT_PAGE_URL="/";
 	static final String CLIENT_PAGE_URL="client";
 	static final String ADMIN_PAGE_URL="admin";
+	static final String CONVERT_OPERATION_URL="convert-operation";
 	
 	private static final String CALCULATE_FORM="calculateForm";
 	private static final String CHANGE_RATE_FORM="changeRateForm";
@@ -38,13 +40,14 @@ public class ClientViewController {
         return ADMIN_PAGE_URL;
     }
 	
-	@PostMapping("/"+ CLIENT_PAGE_URL)
-	public String calculateRate(@Valid CalculateAmountForm calculateAmountForm,
+	/*
+	@PostMapping("/"+ CONVERT_OPERATION_URL)
+	public String calculateRate(@Valid @ModelAttribute(CALCULATE_FORM)CalculateAmountForm calculateAmountForm,
 			BindingResult bindingResult,Model model) {
 		if (bindingResult.hasErrors()) {
-            model.addAttribute(CALCULATE_FORM, new CalculateAmountForm());
-            return CLIENT_PAGE_URL;
+			controller.calculateAmount(calculateAmountForm.getFromCurr(), calculateAmountForm.getToCurr(), calculateAmountForm.getAmount());
+			
         }
 	}
-	
+	*/
 }
