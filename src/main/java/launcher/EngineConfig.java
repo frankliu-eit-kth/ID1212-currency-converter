@@ -78,7 +78,7 @@ public class EngineConfig implements WebMvcConfigurer, ApplicationContextAware {
      * thymeleaf template integration with Spring. All template resolution will
      * be delegated to the specified template resolver.
      */
-    @Bean(name = "bankTemplateEngine")
+    @Bean(name = "appemplateEngine")
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());

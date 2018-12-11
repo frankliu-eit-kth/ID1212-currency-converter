@@ -12,10 +12,11 @@ import model.ConvertRateRepo;
 import model.Counter;
 import model.CounterRepo;
 import model.CurrencyRepo;
+import view.CalculateAmountForm;
 
 @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
 @Service
-public class Controller {
+public class LogicController {
 	@Autowired
 	private CounterRepo counterRepo;
 	@Autowired
@@ -36,7 +37,16 @@ public class Controller {
 		}
 		
 	}
-	
+	public Counter getCounter() {
+		try {
+			Counter counter=counterRepo.findCounterById(COUNTER_ID);
+			return counter;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 	public void addCounterByOne() {
 		
 		try {
@@ -69,9 +79,14 @@ public class Controller {
 		}
 	}
 	
-	public double calculateAmount(String fromCurr, String toCurr, double amount) throws Exception{
+	public CalculateAmountForm calculateAmount(String fromCurr, String toCurr, double amount) throws Exception{
+		CalculateAmountForm form=new CalculateAmountForm();
+		form.setCurrFrom(fromCurr);
+		form.setCurrTo(toCurr);
+		form.setAmountFrom(amount);
 		double convertRate=getConvertRate(fromCurr, toCurr);
-		return amount*convertRate;
+		form.setAmountTo(amount*convertRate);
+		return form;
 	}
 	
 	

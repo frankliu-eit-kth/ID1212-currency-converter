@@ -10,45 +10,59 @@ public class ChangeRateForm {
 	    // The regex below should permit only characters, but asterisk is
 	    // unfortunately also valid.
 	 @Pattern(regexp = "^[a-zA-Z]+$")
-	 private String fromCurr;
+	 private String currFrom;
 	 
 	 @NotBlank(message = "Please specify currency name you want change to convert to")
 	    // The regex below should permit only characters, but asterisk is
 	    // unfortunately also valid.
 	 @Pattern(regexp = "^[a-zA-Z]+$")
-	 private String toCurr;
+	 private String currTo;
 	 
 	 @NotNull(message = "Please specify the new rate")
 	 @PositiveOrZero(message = "the amount must be zero or greater")
 	 private Double newRate;
 
-	public String getFromCurr() {
-		return fromCurr;
+	
+
+	public String getCurrFrom() {
+		return currFrom;
 	}
 
-	public void setFromCurr(String fromCurr) {
-		this.fromCurr = fromCurr;
+
+
+	public void setCurrFrom(String currFrom) {
+		this.currFrom = currFrom;
 	}
 
-	public String getToCurr() {
-		return toCurr;
+
+
+	public String getCurrTo() {
+		return currTo;
 	}
 
-	public void setToCurr(String toCurr) {
-		this.toCurr = toCurr;
+
+
+	public void setCurrTo(String currTo) {
+		this.currTo = currTo;
 	}
+
+
 
 	public Double getNewRate() {
 		return newRate;
 	}
 
+
+
 	public void setNewRate(Double newRate) {
 		this.newRate = newRate;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "ChangeRateForm [fromCurr=" + fromCurr + ", toCurr=" + toCurr + ", newRate=" + newRate + "]";
+		return "ChangeRateForm [fromCurr=" + currFrom + ", toCurr=" + currTo + ", newRate=" + newRate + "]";
 	}
 	 
 	 

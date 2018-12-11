@@ -10,45 +10,73 @@ public class CalculateAmountForm {
 	    // The regex below should permit only characters, but asterisk is
 	    // unfortunately also valid.
 	 @Pattern(regexp = "^[a-zA-Z]+$")
-	 private String fromCurr;
+	 private String currFrom;
 	 
 	 @NotBlank(message = "Please specify currency name you want convert to")
 	    // The regex below should permit only characters, but asterisk is
 	    // unfortunately also valid.
 	 @Pattern(regexp = "^[a-zA-Z]+$")
-	 private String toCurr;
+	 private String currTo;
 	 
 	 @NotNull(message = "Please specify the amount of currency you want to convert")
 	 @PositiveOrZero(message = "the amount must be zero or greater")
-	 private Double amount;
+	 private Double amountFrom;
+	 
+	 private Double amountTo;
 
-	public String getFromCurr() {
-		return fromCurr;
+	
+
+	public String getCurrFrom() {
+		return currFrom;
 	}
 
-	public void setFromCurr(String fromCurr) {
-		this.fromCurr = fromCurr;
+
+
+	public void setCurrFrom(String currFrom) {
+		this.currFrom = currFrom;
 	}
 
-	public String getToCurr() {
-		return toCurr;
+
+
+	public String getCurrTo() {
+		return currTo;
 	}
 
-	public void setToCurr(String toCurr) {
-		this.toCurr = toCurr;
+
+
+	public void setCurrTo(String currTo) {
+		this.currTo = currTo;
 	}
 
-	public Double getAmount() {
-		return amount;
+
+
+	public Double getAmountFrom() {
+		return amountFrom;
 	}
 
-	public void setAmount(Double amount) {
-		this.amount = amount;
+
+
+	public void setAmountFrom(Double amountFrom) {
+		this.amountFrom = amountFrom;
 	}
+
+
+
+	public Double getAmountTo() {
+		return amountTo;
+	}
+
+
+
+	public void setAmountTo(Double amountTo) {
+		this.amountTo = amountTo;
+	}
+
+
 
 	@Override
 	public String toString() {
-		return "CalculateAmountForm [fromCurr=" + fromCurr + ", toCurr=" + toCurr + ", amount=" + amount + "]";
+		return "CalculateAmountForm [fromCurr=" + currFrom + ", toCurr=" + currTo + ", amount=" + amountFrom + "]";
 	}
 	 
 	 
