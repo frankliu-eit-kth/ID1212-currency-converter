@@ -10,11 +10,11 @@
     <section>
         <h1>Calculate Result</h1>
         
-        <p class="form" th:object="${resultForm}">
+        <p class="form" th:object="${calculateAmountForm}">
             Original Currency <span th:text="*{currFrom}">Missing</span>,
             Target Currency <span th:text="*{currTo}">Missing</span>,
-            Amount <span th:text="*{accountFrom}">Missing</span>
-			Result<span th:text="*{accountTo}">Missing</span>
+            Amount <span th:text="*{amountFrom}">Missing</span>
+			Result<span th:text="*{amountTo}">Missing</span>
 			
         </p>
     </section>

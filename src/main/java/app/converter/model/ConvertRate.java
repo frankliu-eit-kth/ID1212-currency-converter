@@ -20,7 +20,7 @@ public class ConvertRate implements ConvertRateDTO{
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	@Column(name="CONVERT_ID")
-	private int id;
+	private long id;
 	
 	@OneToOne(cascade = CascadeType.ALL) //one to one mapping
     @JoinColumn(name = "CURRENCY_FROM", nullable = false)// 
@@ -39,7 +39,7 @@ public class ConvertRate implements ConvertRateDTO{
     @Column(name = "CONVERT_OPTLOCK_VERSION")
     private int optLockVersion;
 	
-	public ConvertRate(int id, Currency curFrom, Currency curTo, double rate) {
+	public ConvertRate(long id, Currency curFrom, Currency curTo, double rate) {
 		super();
 		this.id = id;
 		this.curFrom = curFrom;
@@ -47,11 +47,11 @@ public class ConvertRate implements ConvertRateDTO{
 		this.rate=rate;
 	}
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -85,8 +85,9 @@ public class ConvertRate implements ConvertRateDTO{
 
 	@Override
 	public String toString() {
-		return "ConvertRate [id=" + id + ", curFrom=" + curFrom + ", curTo=" + curTo + "]";
+		return "ConvertRate [id=" + id + ", curFrom=" + curFrom + ", curTo=" + curTo + ", rate=" + rate
+				+ ", optLockVersion=" + optLockVersion + "]";
 	}
-	
+
 
 }

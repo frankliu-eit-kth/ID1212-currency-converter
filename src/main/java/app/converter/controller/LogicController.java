@@ -1,6 +1,7 @@
 package app.converter.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,41 @@ public class LogicController {
 	
 	private final long COUNTER_ID=1;
 	  
+	private boolean up=false;
+	
+    public void setUp() {
+    	if(up) {
+    		return;
+    	}
+    	Counter c = new Counter(COUNTER_ID,0);
+    	counterRepo.saveAndFlush(c);
+    	
+    	List<Currency> currencyList=new ArrayList<Currency>();
+    	Currency cur1 = new Currency(1,"SEK");
+    	Currency cur2 = new Currency(2,"EUR");
+    	Currency cur3 = new Currency(3,"USD");
+    	Currency cur4 = new Currency(4,"RMB");
+    	currencyList.add(cur1);
+    	currencyList.add(cur2);
+    	currencyList.add(cur3);
+    	currencyList.add(cur4);
+    	currencyRepo.saveAll(currencyList);
+    	
+    	List<ConvertRate> rateList=new ArrayList<ConvertRate>();
+    	ConvertRate cr1=new ConvertRate(1,cur1,cur2,1.0);
+    	ConvertRate cr2=new ConvertRate(2,cur1,cur3,1.0);
+    	ConvertRate cr3=new ConvertRate(3,cur1,cur4,1.0);
+    	ConvertRate cr4=new ConvertRate(4,cur2,cur1,1.0);
+    	rateList.add(cr1);
+    	rateList.add(cr2);
+    	rateList.add(cr3);
+    	rateList.add(cr4);
+    	convertRateRepo.saveAll(rateList);
+    	up=true;
+    	
+    }
+	
+	
 	public int loopUpCount() {
 	try {
 		Counter counter=counterRepo.findCounterById(COUNTER_ID);
@@ -37,7 +73,6 @@ public class LogicController {
 			e.printStackTrace();
 			return 0;
 		}
-		
 	}
 	
 	
@@ -111,7 +146,15 @@ public class LogicController {
 		for(ConvertRate cr:convertRates) {
 			if(cr.getCurFrom().getName().equals(fromCurr)&&cr.getCurTo().getName().equals(toCurr)) {
 				cr.setRate(newRate);
+				System.out.println("find the corresponding from->to change rate object");
 				convertRateRepo.saveAndFlush(cr);
+				System.out.println("changed fron->to");
+			}
+			if(cr.getCurFrom().getName().equals(toCurr)&&cr.getCurTo().getName().equals(fromCurr)) {
+				cr.setRate(1.0/newRate);
+				System.out.println("find the corresponding to->from change rate object");
+				convertRateRepo.saveAndFlush(cr);
+				System.out.println("changed to->from");
 			}
 		}
 	}
