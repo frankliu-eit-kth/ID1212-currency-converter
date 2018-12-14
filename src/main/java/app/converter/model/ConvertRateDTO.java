@@ -1,4 +1,4 @@
-package model;
+package app.converter.model;
 
 public interface ConvertRateDTO {
 	Currency getCurFrom();

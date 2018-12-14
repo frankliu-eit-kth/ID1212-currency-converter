@@ -1,4 +1,6 @@
-package model;
+package app.converter.model;
+
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -7,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional(propagation = Propagation.MANDATORY)
-public interface CounterRepo extends JpaRepository<Counter, Integer> {
-	Counter findCounterById(int id);
+public interface ConvertRateRepo extends JpaRepository<ConvertRate, Integer> {
+	List<ConvertRate> findAll();
+	
+	@SuppressWarnings("unchecked")
+	ConvertRate saveAndFlush(ConvertRate convertRate);
 }

@@ -1,4 +1,5 @@
-package controller;
+package app.converter.controller;
+
 
 import java.util.List;
 
@@ -7,12 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import model.ConvertRate;
-import model.ConvertRateRepo;
-import model.Counter;
-import model.CounterRepo;
-import model.CurrencyRepo;
-import view.CalculateAmountForm;
+import app.converter.model.ConvertRate;
+import app.converter.model.ConvertRateRepo;
+import app.converter.model.Counter;
+import app.converter.model.CounterRepo;
+import app.converter.model.Currency;
+import app.converter.model.CurrencyRepo;
+import app.converter.view.CalculateAmountForm;
 
 @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
 @Service
@@ -24,7 +26,7 @@ public class LogicController {
 	@Autowired
 	private ConvertRateRepo convertRateRepo;
 	
-	private final int COUNTER_ID=1;
+	private final long COUNTER_ID=1;
 	  
 	public int loopUpCount() {
 	try {
@@ -37,8 +39,43 @@ public class LogicController {
 		}
 		
 	}
+	
+	
+	public void printAllCounter() {
+		List<Counter> counters=counterRepo.findAll();
+		for(Counter c:counters){
+			System.out.println(c.toString());
+		}
+	}
+	
+	public void printAllConvertRate() {
+		List<ConvertRate> rates=convertRateRepo.findAll();
+		for(ConvertRate cr:rates){
+			System.out.println(cr.toString());
+		}
+	}
+	
+	public void printAllCurrency() {
+		List<Currency>	currencies=currencyRepo.findAll();
+		for(Currency c:currencies) {
+			System.out.println(c.toString());
+		}
+	}
+	
+	
 	public Counter getCounter() {
 		try {
+			
+			List<Counter> counters=counterRepo.findAll();
+			if(counters.size()==0) {
+				Counter counter=new Counter(COUNTER_ID,0);
+				counterRepo.save(counter);
+				
+			}
+			if(counters.size()>1) {
+				System.out.println("more than 1 counter");
+				return null;
+			}
 			Counter counter=counterRepo.findCounterById(COUNTER_ID);
 			return counter;
 		} catch (Exception e) {

@@ -1,28 +1,26 @@
-package view;
+package app.converter.view;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.PositiveOrZero;
 
-public class CalculateAmountForm {
-	 @NotBlank(message = "Please specify currency name you want convert from")
+public class ChangeRateForm {
+	 @NotBlank(message = "Please specify currency name you want change to convert from")
 	    // The regex below should permit only characters, but asterisk is
 	    // unfortunately also valid.
 	 @Pattern(regexp = "^[a-zA-Z]+$")
 	 private String currFrom;
 	 
-	 @NotBlank(message = "Please specify currency name you want convert to")
+	 @NotBlank(message = "Please specify currency name you want change to convert to")
 	    // The regex below should permit only characters, but asterisk is
 	    // unfortunately also valid.
 	 @Pattern(regexp = "^[a-zA-Z]+$")
 	 private String currTo;
 	 
-	 @NotNull(message = "Please specify the amount of currency you want to convert")
+	 @NotNull(message = "Please specify the new rate")
 	 @PositiveOrZero(message = "the amount must be zero or greater")
-	 private Double amountFrom;
-	 
-	 private Double amountTo;
+	 private Double newRate;
 
 	
 
@@ -50,34 +48,23 @@ public class CalculateAmountForm {
 
 
 
-	public Double getAmountFrom() {
-		return amountFrom;
+	public Double getNewRate() {
+		return newRate;
 	}
 
 
 
-	public void setAmountFrom(Double amountFrom) {
-		this.amountFrom = amountFrom;
-	}
-
-
-
-	public Double getAmountTo() {
-		return amountTo;
-	}
-
-
-
-	public void setAmountTo(Double amountTo) {
-		this.amountTo = amountTo;
+	public void setNewRate(Double newRate) {
+		this.newRate = newRate;
 	}
 
 
 
 	@Override
 	public String toString() {
-		return "CalculateAmountForm [fromCurr=" + currFrom + ", toCurr=" + currTo + ", amount=" + amountFrom + "]";
+		return "ChangeRateForm [fromCurr=" + currFrom + ", toCurr=" + currTo + ", newRate=" + newRate + "]";
 	}
+	 
 	 
 	 
 

@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package view;
+package app.converter.view;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;

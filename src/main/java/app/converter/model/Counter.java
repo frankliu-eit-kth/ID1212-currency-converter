@@ -1,4 +1,4 @@
-package model;
+package app.converter.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +29,7 @@ public class Counter implements CounterDTO {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Counter(int id,int count) {
+	public Counter(long id,int count) {
 		this.id=id;
 		this.count=count;
 	}

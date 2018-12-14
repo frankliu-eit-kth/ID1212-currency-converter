@@ -1,9 +1,8 @@
-package view;
+package app.converter.view;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,12 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import controller.LogicController;
-import model.Counter;
+import app.converter.controller.LogicController;
+import app.converter.model.Counter;
 
 @Controller
-@Scope("session")
-public class ClientViewController {
+class HomeController {
+
 
 	static final String DEFAULT_PAGE_URL="/";
 	static final String CLIENT_PAGE_URL="client";
@@ -29,7 +28,8 @@ public class ClientViewController {
 	
 	@Autowired
     private LogicController controller;
-    
+	
+	
 	@GetMapping(DEFAULT_PAGE_URL)
     public String showDefaultView() {
         return "redirect:" + CLIENT_PAGE_URL;
@@ -44,6 +44,7 @@ public class ClientViewController {
 	public String showAdminView(ChangeRateForm changeRateForm,Model model) {
 		Counter counter=controller.getCounter();
 		if(counter==null) {
+			System.out.println("counter is null");
 			model.addAttribute(ExceptionHandlers.ERROR_PATH,ExceptionHandlers.GENERIC_ERROR );
 			return ExceptionHandlers.ERROR_PAGE_URL;
 		}else {
@@ -75,6 +76,8 @@ public class ClientViewController {
 	public String getChangeReultPage(@Valid @ModelAttribute(CHANGE_RATE_FORM)ChangeRateForm changeRateForm,
 			BindingResult bindingResult,Model model) throws Exception{
 		if (!bindingResult.hasErrors()) {
+			controller.printAllConvertRate();
+			controller.printAllCurrency();
 			controller.changeConvertRate(changeRateForm.getCurrFrom(), changeRateForm.getCurrTo(), changeRateForm.getNewRate());
 			model.addAttribute(CHANGE_RATE_FORM	, changeRateForm);
 			return CHANGE_RATE_RESULT_URL;
