@@ -9,14 +9,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import app.converter.DAO.ConvertRateRepo;
+import app.converter.DAO.CounterRepo;
+import app.converter.DAO.CurrencyRepo;
 import app.converter.model.ConvertRate;
-import app.converter.model.ConvertRateRepo;
 import app.converter.model.Counter;
-import app.converter.model.CounterRepo;
 import app.converter.model.Currency;
-import app.converter.model.CurrencyRepo;
 import app.converter.view.CalculateAmountForm;
-
+/**
+ * 
+ * @author Liming Liu
+ * @role  the logic controller of the currency converter
+ * @robustness the setUp method only set several entries for experiment, it's not complete yet
+ * 				there should be only one entry in counter table, currently this is manually maintained by constantly checking
+ * @ExceptionHandling  exceptions are not well-handled yet
+ *
+ */
 @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
 @Service
 public class LogicController {
@@ -28,11 +36,14 @@ public class LogicController {
 	private ConvertRateRepo convertRateRepo;
 	
 	private final long COUNTER_ID=1;
-	  
-	private boolean up=false;
 	
+	private boolean DB_SETUP_STATE=false;
+	
+	/*
+	 * manually set up the data base
+	 */
     public void setUp() {
-    	if(up) {
+    	if(DB_SETUP_STATE) {
     		return;
     	}
     	Counter c = new Counter(COUNTER_ID,0);
@@ -50,31 +61,18 @@ public class LogicController {
     	currencyRepo.saveAll(currencyList);
     	
     	List<ConvertRate> rateList=new ArrayList<ConvertRate>();
-    	ConvertRate cr1=new ConvertRate(1,cur1,cur2,1.0);
+    	ConvertRate cr1=new ConvertRate(1,cur1,cur2,0.1);
     	ConvertRate cr2=new ConvertRate(2,cur1,cur3,1.0);
     	ConvertRate cr3=new ConvertRate(3,cur1,cur4,1.0);
-    	ConvertRate cr4=new ConvertRate(4,cur2,cur1,1.0);
+    	ConvertRate cr4=new ConvertRate(4,cur2,cur1,10.0);
     	rateList.add(cr1);
     	rateList.add(cr2);
     	rateList.add(cr3);
     	rateList.add(cr4);
     	convertRateRepo.saveAll(rateList);
-    	up=true;
+    	DB_SETUP_STATE=true;
     	
     }
-	
-	
-	public int loopUpCount() {
-	try {
-		Counter counter=counterRepo.findCounterById(COUNTER_ID);
-		return counter.getCount();
-	}catch(Exception e)
-		{
-			e.printStackTrace();
-			return 0;
-		}
-	}
-	
 	
 	public void printAllCounter() {
 		List<Counter> counters=counterRepo.findAll();
@@ -148,7 +146,7 @@ public class LogicController {
 				cr.setRate(newRate);
 				System.out.println("find the corresponding from->to change rate object");
 				convertRateRepo.saveAndFlush(cr);
-				System.out.println("changed fron->to");
+				System.out.println("changed from->to");
 			}
 			if(cr.getCurFrom().getName().equals(toCurr)&&cr.getCurTo().getName().equals(fromCurr)) {
 				cr.setRate(1.0/newRate);

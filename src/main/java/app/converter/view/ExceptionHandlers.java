@@ -38,6 +38,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * Contains all exception handling methods.
+ * @author Liming Liu
+ * @robustness  Currently not well-implemented, the error page only shows "Operation failed"
  */
 @Controller
 @ControllerAdvice
@@ -57,28 +59,7 @@ public class ExceptionHandlers implements ErrorController {
     public static final String HTTP_404_INFO = "Sorry, but there is no such page. We would like to fix this error, please tell us what you where trying to do.";
     static final String ERROR_PATH = "failure";
 
-    /**
-     * Exception handler for broken business rules.
-     *
-     * @return An appropriate error page.
-     */
-    /*
-    @ExceptionHandler(IllegalBankTransactionException.class)
-    @ResponseStatus(HttpStatus.OK)
-    public String handleException(IllegalBankTransactionException exception, Model model) {
-        if (exception.getMessage().toUpperCase().contains("DEPOSIT")) {
-            model.addAttribute(ERROR_TYPE_KEY, DEPOSIT_FAILED);
-            model.addAttribute(ERROR_INFO_KEY, DEPOSIT_FAILED_INFO);
-        } else if (exception.getMessage().toUpperCase().contains("WITHDRAW")) {
-            model.addAttribute(ERROR_TYPE_KEY, WITHDRAWAL_FAILED);
-            model.addAttribute(ERROR_INFO_KEY, WITHDRAWAL_FAILED_INFO);
-        } else {
-            model.addAttribute(ERROR_TYPE_KEY, GENERIC_ERROR);
-            model.addAttribute(ERROR_INFO_KEY, GENERIC_ERROR_INFO);
-        }
-        return ERROR_PAGE_URL;
-    }
-*/
+   
     /**
      * The most generic exception handler, will be used if there is not a more specific handler for the exception that
      * shall be handled.

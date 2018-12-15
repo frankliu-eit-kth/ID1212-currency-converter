@@ -8,7 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
-
+/**
+ * 
+ * @author Liming Liu
+ * JPA entity used
+ *
+ */
 @Entity
 @Table(name = "COUNTER")
 public class Counter implements CounterDTO {

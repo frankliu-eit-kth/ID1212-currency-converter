@@ -12,7 +12,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.PositiveOrZero;
-
+/**
+ * 
+ * @author Liming Liu
+ * JPA entity used
+ *
+ */
 @Entity
 @Table(name="CONVERT_RATE")
 public class ConvertRate implements ConvertRateDTO{

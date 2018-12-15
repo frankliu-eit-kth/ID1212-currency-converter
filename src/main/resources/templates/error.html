@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/fragments/layout}">
 <head>
     <meta charset="UTF-8">
     <title>Error Page</title>
 </head>
 <body>
-<main>
+<main layout:fragment="content">
 
     <section>
         <h1 th:text="${errorType}">Error Type</h1>

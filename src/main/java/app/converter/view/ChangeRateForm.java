@@ -4,7 +4,13 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.PositiveOrZero;
-
+/**
+ * 
+ * @author Liming Liu
+ * @role  not an JPA eneity, not saved in database
+ * 		  used to carry form information from/to front page and check if the contents are legal 
+ * 
+ */
 public class ChangeRateForm {
 	 @NotBlank(message = "Please specify currency name you want change to convert from")
 	    // The regex below should permit only characters, but asterisk is
