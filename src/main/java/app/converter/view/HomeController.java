@@ -71,6 +71,7 @@ class HomeController {
 			CalculateAmountForm resultForm=controller.calculateAmount(calculateAmountForm.getCurrFrom(), calculateAmountForm.getCurrTo(), calculateAmountForm.getAmountFrom());
 			System.out.println("test:"+resultForm.toString());
 			model.addAttribute(CALCULATE_FORM, resultForm);
+			controller.addCounterByOne();
 			return RESULT_URL;
         }else {
         	model.addAttribute(ExceptionHandlers.ERROR_PATH,ExceptionHandlers.GENERIC_ERROR );

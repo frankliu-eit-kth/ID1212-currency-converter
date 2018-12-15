@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/fragments/layout}">
 <head>
     <meta charset="UTF-8">
     <title>Client Page</title>
 </head>
 <body>
-<main>
+<main layout:fragment="content">
 <section>
         <h1>Currency Converter</h1>
-        <p class="info">Please enter the types and amount you want to convert</p>
+        <p class="info">Please enter the original and target currencies and amount you want to convert</p>
+        <p class="info">Choices of currencies: SEK EUR USD RMB </p>
         <form th:action="@{/result}" th:object="${calculateAmountForm}" method="post">
             <p class="form"><label for="currency-from">Original currency</label>:<input type="text"
                                                                            th:field="*{currFrom}"

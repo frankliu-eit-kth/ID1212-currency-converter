@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/fragments/layout}">
 <head>
     <meta charset="UTF-8">
     <title>Admin page</title>
 </head>
 <body>
-<main>
+<main layout:fragment="content">
  <section>
         <h1>Counter</h1>
-        <p class="info">Current number of operations executed by user</p>
-        <p class="form" th:object="${counter}">
-            counter :<span th:text="*{count}">Missing</span>,
-        </p>
+        <p class="info">Current number of operations executed by clients</p>
+        <p class="form" th:object="${counter}">counter :<span th:text="*{count}">Missing</span></p>
 </section>
 <section>
         <h1>Change convert rate</h1>

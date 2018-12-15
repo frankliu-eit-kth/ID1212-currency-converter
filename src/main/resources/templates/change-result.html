@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/fragments/layout}">
 <head>
     <meta charset="UTF-8">
     <title>change result page</title>
 </head>
 <body>
-<main>
+<main layout:fragment="content">
  <section>
         <h1>Change rate success</h1>
         
         <p class="form" th:object="${changeRateForm}">
-            Original Currency <span th:text="*{currFrom}">Missing</span>,
-            Target Currency <span th:text="*{currTo}">Missing</span>,
-            New Rate <span th:text="*{newRate}">Missing</span>
+           Original Currency <span th:text="*{currFrom}">Missing</span></p>
+           <p class="form" th:object="${changeRateForm}">
+           Target Currency <span th:text="*{currTo}">Missing</span></p>
+            <p class="form" th:object="${changeRateForm}">
+           New Rate <span th:text="*{newRate}">Missing</span></p>
 			
         </p>
    </section>
