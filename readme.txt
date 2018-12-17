@@ -11,7 +11,7 @@ About:
 			/*
 			 * The MIT License
 			 *
-			 * Copyright 2017 Leif Lindbäck <leifl@kth.se>.
+			 * Copyright 2017 Leif LindbÃ¤ck <leifl@kth.se>.
 			 *
 			 * Permission is hereby granted, free of charge, to any person obtaining a copy
 			 * of this software and associated documentation files (the "Software"), to deal
@@ -49,8 +49,8 @@ About:
 		--don't mess with it unless you have to
 	4. Web resources: 
 		in resources folder
-	5. code structure：
-		.model： MVC models
+	5. code structureï¼š
+		.modelï¼š MVC models
 		.dao:use repositories to serve as DAOs
 		.controller: the logic controller
 		.view: the request handler and related classes
